@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "164195776100",
+    "firebase_url": "https://airfryerrecipe-8ae15.firebaseio.com",
+    "project_id": "airfryerrecipe-8ae15",
+    "storage_bucket": "airfryerrecipe-8ae15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164195776100:android:c87447342ce1a5017dd171",
+        "android_client_info": {
+          "package_name": "com.cnm.airfryerrecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164195776100-7e9mbq56op94si4qsmu464utfs1j08ko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cnm.airfryerrecipe",
+            "certificate_hash": "1ac9054e01a36261d3781be53432357fa3c2aea6"
+          }
+        },
+        {
+          "client_id": "164195776100-pb22pk2b335lm55pggdcbmi1nq4m9eim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARLk8Teh5BNy86jQ4W5zsyrJKB4EXmFc0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164195776100-pb22pk2b335lm55pggdcbmi1nq4m9eim.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
