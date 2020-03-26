@@ -1,11 +1,10 @@
 package com.cnm.airfryerrecipe
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.cnm.airfryerrecipe.R
-import kotlinx.android.synthetic.main.item_category.view.*
+import com.cnm.airfryerrecipe.databinding.ItemCategoryBinding
 
 class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -18,9 +17,11 @@ class CategoryAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
-        return CategoryViewHolder(view)
+        val binding = DataBindingUtil.inflate<ItemCategoryBinding>(
+            LayoutInflater.from(parent.context),
+            R.layout.item_category, parent,false
+        )
+        return CategoryViewHolder(binding)
     }
 
     override fun getItemCount(): Int = categoryItems.size
@@ -30,10 +31,10 @@ class CategoryAdapter :
         holder.bind(categoryItems[position])
     }
 
-    inner class CategoryViewHolder(view: View) :
-        RecyclerView.ViewHolder(view) {
+    inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CategoryResponse) {
-
+            binding.items = item
         }
 
     }
