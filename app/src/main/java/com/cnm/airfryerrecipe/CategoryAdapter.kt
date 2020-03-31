@@ -9,9 +9,10 @@ import com.cnm.airfryerrecipe.databinding.ItemCategoryBinding
 class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    private val categoryItems = mutableListOf<CategoryResponse>()
+    private val categoryItems = mutableListOf<CategoryResponse?>()
 
-    fun setItem(items: List<CategoryResponse>) {
+    fun setItem(items: List<CategoryResponse?>) {
+        categoryItems.clear()
         categoryItems.addAll(items)
         notifyDataSetChanged()
     }
@@ -19,7 +20,7 @@ class CategoryAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding = DataBindingUtil.inflate<ItemCategoryBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.item_category, parent,false
+            R.layout.item_category, parent, false
         )
         return CategoryViewHolder(binding)
     }
@@ -28,7 +29,7 @@ class CategoryAdapter :
 
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(categoryItems[position])
+        categoryItems[position]?.let { holder.bind(it) }
     }
 
     inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
