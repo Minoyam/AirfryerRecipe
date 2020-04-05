@@ -6,7 +6,7 @@
 
         <variable
             name="items"
-            type="com.cnm.airfryerrecipe.CategoryResponse" />
+            type="com.cnm.airfryerrecipe.data.model.CategoryResponse" />
     </data>
 
     <LinearLayout
