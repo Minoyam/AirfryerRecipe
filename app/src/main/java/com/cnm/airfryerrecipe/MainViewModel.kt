@@ -3,24 +3,39 @@ package com.cnm.airfryerrecipe
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cnm.airfryerrecipe.data.model.CategoryResponse
-import com.cnm.airfryerrecipe.data.repository.AirfryerRepositoryImpl
-import com.cnm.airfryerrecipe.data.source.db.AirfryerFirebaseImpl
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class MainViewModel : ViewModel() {
     private val firebaseDatabase: DatabaseReference =
         FirebaseDatabase.getInstance().getReference("category")
-    private val airfryerRepositoryImpl: AirfryerRepositoryImpl by lazy {
-        AirfryerRepositoryImpl(AirfryerFirebaseImpl(firebaseDatabase))
-    }
-    val categoryItems = MutableLiveData<List<CategoryResponse>>()
-    fun setItems(it: List<CategoryResponse>) {
+
+    val categoryItems = MutableLiveData<List<CategoryResponse?>>()
+    val isCallItems = MutableLiveData<Boolean>()
+    val itess = CategoryResponse("1","1")
+    val item = listOf<CategoryResponse?>(itess)
+    fun setItems(it: List<CategoryResponse?>) {
         categoryItems.value = null
         categoryItems.value = it
+        isCallItems.value = true
     }
 
-    fun loadCategory(): List<CategoryResponse> =
-        airfryerRepositoryImpl.loadCategory()
+    fun loadCategory() {
+        val item = mutableListOf<CategoryResponse?>()
+        isCallItems.value = false
+        firebaseDatabase.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                item.clear()
+                for (postSnapshot in dataSnapshot.children) {
+                    item.add(postSnapshot.getValue(CategoryResponse::class.java))
+                }
+                setItems(item)
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                // ...
+            }
+        })
+
+    }
 
 }

@@ -1,42 +1,45 @@
 package com.cnm.airfryerrecipe
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.cnm.airfryerrecipe.adapter.CategoryAdapter
 import com.cnm.airfryerrecipe.databinding.ActivityMainBinding
-import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
     private val categoryAdapter = CategoryAdapter()
     private val binding by lazy {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
-    lateinit var firebaseDatabase: DatabaseReference
+    private val viewModel: MainViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return MainViewModel() as T
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference("category")
-        binding.rvContent.apply {
-            adapter = categoryAdapter
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
-        }
-
-        firebaseDatabase.addValueEventListener(object : ValueEventListener {
-            val item = mutableListOf<CategoryResponse?>()
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                item.clear()
-                for (postSnapshot in dataSnapshot.children) {
-                    item.add(postSnapshot.getValue(CategoryResponse::class.java))
-                }
-                categoryAdapter.setItem(item)
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                // ...
-            }
-        })
+        initActivity()
+        loadCategory()
 
     }
 
+    private fun loadCategory() = viewModel.loadCategory()
+
+    private fun initActivity() {
+        with(binding) {
+            rvContent.apply {
+                adapter = categoryAdapter
+                layoutManager = GridLayoutManager(this@MainActivity, 2)
+            }
+            lifecycleOwner = this@MainActivity
+            this.vm = viewModel
+        }
+    }
 }
