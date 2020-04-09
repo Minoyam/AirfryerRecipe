@@ -1,10 +1,14 @@
-package com.cnm.airfryerrecipe
+package com.cnm.airfryerrecipe.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.cnm.airfryerrecipe.R
+import com.cnm.airfryerrecipe.data.model.CategoryResponse
 import com.cnm.airfryerrecipe.databinding.ItemCategoryBinding
+import kotlin.math.log
 
 class CategoryAdapter :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {

@@ -1,4 +1,4 @@
-package com.cnm.airfryerrecipe
+package com.cnm.airfryerrecipe.ui.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,13 +7,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.cnm.airfryerrecipe.R
 import com.cnm.airfryerrecipe.adapter.CategoryAdapter
 import com.cnm.airfryerrecipe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private val categoryAdapter = CategoryAdapter()
+    private val categoryAdapter =
+        CategoryAdapter()
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMainBinding>(this,
+            R.layout.activity_main
+        )
     }
     private val viewModel: MainViewModel by viewModels {
         object : ViewModelProvider.Factory {

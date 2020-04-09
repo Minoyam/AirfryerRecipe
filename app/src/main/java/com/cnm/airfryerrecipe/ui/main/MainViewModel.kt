@@ -1,4 +1,4 @@
-package com.cnm.airfryerrecipe
+package com.cnm.airfryerrecipe.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,7 @@ class MainViewModel : ViewModel() {
 
     val categoryItems = MutableLiveData<List<CategoryResponse?>>()
     val isCallItems = MutableLiveData<Boolean>()
-    val itess = CategoryResponse("1","1")
+    val itess = CategoryResponse("1", "1")
     val item = listOf<CategoryResponse?>(itess)
     fun setItems(it: List<CategoryResponse?>) {
         categoryItems.value = null
