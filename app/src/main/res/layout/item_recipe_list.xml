@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="items"
+            type="com.cnm.airfryerrecipe.data.model.RecipeListResponse" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_list_recipe_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tool:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_list_recipe_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                tool:text="간단한 에어프라이어 레시피" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

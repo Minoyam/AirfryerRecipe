@@ -1,11 +1,9 @@
-package com.cnm.airfryerrecipe.adapter
+package com.cnm.airfryerrecipe
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.cnm.airfryerrecipe.R
-import com.cnm.airfryerrecipe.data.model.CategoryResponse
 import com.cnm.airfryerrecipe.databinding.ItemCategoryBinding
 
 class CategoryAdapter :

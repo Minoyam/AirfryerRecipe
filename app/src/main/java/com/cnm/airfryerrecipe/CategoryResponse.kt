@@ -1,4 +1,4 @@
-package com.cnm.airfryerrecipe.data.model
+package com.cnm.airfryerrecipe
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
