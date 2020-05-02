@@ -3,7 +3,6 @@
     xmlns:tool="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="items"
             type="com.cnm.airfryerrecipe.data.model.RecipeListResponse" />

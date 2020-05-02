@@ -1,6 +1,5 @@
 package com.cnm.airfryerrecipe.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,9 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cnm.airfryerrecipe.R
 import com.cnm.airfryerrecipe.data.model.CategoryResponse
 import com.cnm.airfryerrecipe.databinding.ItemCategoryBinding
-import kotlin.math.log
 
-class CategoryAdapter :
+class CategoryAdapter(private val onClickAction: (CategoryResponse) -> Unit) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private val categoryItems = mutableListOf<CategoryResponse?>()
@@ -38,6 +36,13 @@ class CategoryAdapter :
 
     inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnClickListener {
+                val item = categoryItems[adapterPosition] as CategoryResponse
+                onClickAction(item)
+            }
+        }
+
         fun bind(item: CategoryResponse) {
             binding.items = item
         }

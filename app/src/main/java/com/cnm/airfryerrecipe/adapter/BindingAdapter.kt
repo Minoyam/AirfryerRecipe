@@ -16,7 +16,6 @@ fun bindImage(imageView: ImageView, imageUri: String?) {
 
 @BindingAdapter("bind:bindSetCategoryItem")
 fun RecyclerView.bindSetCategoryItem(items: List<CategoryResponse?>) {
-
     if (adapter is CategoryAdapter)
         items.let {
             (adapter as CategoryAdapter).setItem(it)

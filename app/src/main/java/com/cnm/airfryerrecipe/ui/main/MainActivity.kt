@@ -1,5 +1,6 @@
 package com.cnm.airfryerrecipe.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,13 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cnm.airfryerrecipe.R
 import com.cnm.airfryerrecipe.adapter.CategoryAdapter
+import com.cnm.airfryerrecipe.data.model.CategoryResponse
 import com.cnm.airfryerrecipe.databinding.ActivityMainBinding
+import com.cnm.airfryerrecipe.ui.recipeList.RecipeListActivity
 
 class MainActivity : AppCompatActivity() {
     private val categoryAdapter =
-        CategoryAdapter()
+        CategoryAdapter(::showRecipeList)
     private val binding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this,
+        DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
             R.layout.activity_main
         )
     }
@@ -31,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         initActivity()
         loadCategory()
-
     }
 
     private fun loadCategory() = viewModel.loadCategory()
@@ -45,5 +48,14 @@ class MainActivity : AppCompatActivity() {
             lifecycleOwner = this@MainActivity
             this.vm = viewModel
         }
+    }
+
+    private fun showRecipeList(item: CategoryResponse) {
+        val intent = Intent(this, RecipeListActivity::class.java)
+        intent.putExtra(LISTID, item.categoryId)
+        startActivity(intent)
+    }
+    companion object{
+        const val LISTID = "Id"
     }
 }
