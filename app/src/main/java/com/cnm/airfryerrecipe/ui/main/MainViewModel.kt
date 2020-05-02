@@ -5,14 +5,16 @@ import androidx.lifecycle.ViewModel
 import com.cnm.airfryerrecipe.data.model.CategoryResponse
 import com.google.firebase.database.*
 
+
 class MainViewModel : ViewModel() {
     private val firebaseDatabase: DatabaseReference =
-        FirebaseDatabase.getInstance().getReference("category")
+        FirebaseDatabase.getInstance().getReference("category/menu")
 
     val categoryItems = MutableLiveData<List<CategoryResponse?>>()
     val isCallItems = MutableLiveData<Boolean>()
     val itess = CategoryResponse("1", "1")
     val item = listOf<CategoryResponse?>(itess)
+
     fun setItems(it: List<CategoryResponse?>) {
         categoryItems.value = null
         categoryItems.value = it
@@ -30,6 +32,7 @@ class MainViewModel : ViewModel() {
                 }
                 setItems(item)
             }
+
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message
                 // ...
