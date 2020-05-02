@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:text="@{items.recipeName}"
                 tool:text="간단한 에어프라이어 레시피" />
 
         </LinearLayout>
