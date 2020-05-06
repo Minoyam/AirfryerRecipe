@@ -1,10 +1,8 @@
 package com.cnm.airfryerrecipe.data.model
 
-import com.google.firebase.database.IgnoreExtraProperties
-
-@IgnoreExtraProperties
 data class RecipeListResponse(
-    val recipeListImage: String? = "",
-    val recipeListName: String? = "",
-    val recipeListTime: Int? = 0
+    val recipeId: String? = "",
+    val recipeName: String? = "",
+    val recipeTime: String? = "",
+    val recipeTemp : String = ""
 )
